@@ -132,9 +132,18 @@ git push -u origin main
 2. 授权并选中刚才的仓库，配置：
    - 构建命令：`npm run build`
    - 构建输出目录：`dist`
-3. 点击「保存并部署」，等待 1–2 分钟，会得到一个 `xxx.pages.dev` 的临时域名
+3. 展开「环境变量(高级)」，添加一条：
+   - 变量名：`NODE_VERSION`，值：`22`
+   - ⚠️ 建议加上。Cloudflare Pages 默认 Node 版本可能偏旧，而 Astro 5 要求 Node
+     `18.20.8+ / 20.3.0+ / 22+`，不指定容易出现构建报 `Unsupported engine`
+     或 `Not supported` 而失败。
+4. 点击「保存并部署」，等待 1–2 分钟，会得到一个 `xxx.pages.dev` 的临时域名
 
 之后每次 `git push`，Cloudflare 会自动重新构建发布，无需任何手动操作。
+
+> 当前仓库名是 `xaesay.github.io`，这是 GitHub Pages 的用户站专用名。
+> 只要你**没有**在仓库 Settings → Pages 里启用 GitHub Pages，它就只是个普通仓库，
+> 与 Cloudflare Pages 托管互不干扰。
 
 ### 第 3 步：绑定你的域名
 
