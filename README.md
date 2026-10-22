@@ -128,10 +128,15 @@ git push -u origin main
 
 ### 第 2 步：连接 Cloudflare Pages
 
-1. 打开 <https://dash.cloudflare.com/> → **Workers 和 Pages** → **创建** → **Pages** → **连接到 Git**
+1. 打开 <https://dash.cloudflare.com/> → **Workers 和 Pages** → **创建** → **连接到 Git**
 2. 授权并选中刚才的仓库，配置：
    - 构建命令：`npm run build`
    - 构建输出目录：`dist`
+
+> **关于新版界面**：Cloudflare 已把 Pages 并入 Workers 平台，现在创建项目时标题会显示
+> 「配置您的 Worker 项目」，部署命令是 `npx wrangler deploy`，这是**正常的**，一样能免费托管静态站。
+> 项目里已经准备好了 `wrangler.json`（里面指定了 `assets.directory = ./dist`），
+> 所以直接点部署即可，不需要改动任何默认命令。
 3. 展开「环境变量(高级)」，添加一条：
    - 变量名：`NODE_VERSION`，值：`22`
    - ⚠️ 建议加上。Cloudflare Pages 默认 Node 版本可能偏旧，而 Astro 5 要求 Node
