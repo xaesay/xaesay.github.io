@@ -1,0 +1,70 @@
+---
+import BaseHead from '../../components/BaseHead.astro';
+import Footer from '../../components/Footer.astro';
+import Header from '../../components/Header.astro';
+import { SITE_TITLE } from '../../consts';
+import { getPosts, getTags } from '../../utils/posts';
+
+const posts = await getPosts();
+const tags = getTags(posts);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={`标签 · ${SITE_TITLE}`} description={`${SITE_TITLE} 的文章标签归档`} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>标签</h1>
+			<p class="count">共 {tags.length} 个标签</p>
+			<div class="cloud">
+				{
+					tags.map(({ tag, count }) => (
+						<a href={`/tags/${tag}`} class="tag">
+							{tag} <span class="count-badge">{count}</span>
+						</a>
+					))
+				}
+			</div>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	h1 {
+		margin-bottom: 0;
+	}
+	.count {
+		color: rgb(var(--gray));
+		font-size: 0.85em;
+		margin: 0 0 2em 0;
+	}
+	.cloud {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75em;
+	}
+	.tag {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		padding: 0.3em 1em;
+		border-radius: 999px;
+		background: var(--code-bg);
+		color: rgb(var(--gray-dark));
+		font-size: 0.9em;
+		text-decoration: none;
+		transition: 0.2s ease;
+	}
+	.tag:hover {
+		color: var(--accent);
+		transform: translateY(-2px);
+	}
+	.count-badge {
+		font-size: 0.75em;
+		color: rgb(var(--gray));
+	}
+</style>

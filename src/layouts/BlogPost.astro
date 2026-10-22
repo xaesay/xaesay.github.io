@@ -1,0 +1,138 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import Header from '../components/Header.astro';
+import { readingTime } from '../utils/posts';
+
+type Props = CollectionEntry<'blog'>['data'] & {
+	id: string;
+	body?: string;
+};
+
+const { id, title, description, pubDate, updatedDate, heroImage, tags, body } = Astro.props;
+const minutes = readingTime(body ?? '');
+---
+
+<html lang="zh-CN">
+	<head>
+		<BaseHead title={title} description={description} image={heroImage} />
+		<style>
+			main {
+				width: calc(100% - 2em);
+				max-width: 100%;
+				margin: 0;
+			}
+			.hero-image {
+				width: 100%;
+			}
+			.hero-image img {
+				display: block;
+				margin: 0 auto;
+				border-radius: 12px;
+				box-shadow: var(--box-shadow);
+			}
+			.prose {
+				width: 720px;
+				max-width: calc(100% - 2em);
+				margin: auto;
+				padding: 1em;
+				color: rgb(var(--gray-dark));
+			}
+			.title {
+				margin-bottom: 1em;
+				padding: 1em 0;
+				text-align: center;
+				line-height: 1;
+			}
+			.title h1 {
+				margin: 0 0 0.5em 0;
+			}
+			.date {
+				margin-bottom: 0.5em;
+				color: rgb(var(--gray));
+				font-size: 0.85em;
+				display: flex;
+				gap: 0.5em;
+				justify-content: center;
+				flex-wrap: wrap;
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+			.post-tags {
+				display: flex;
+				gap: 0.5em;
+				justify-content: center;
+				flex-wrap: wrap;
+				margin-bottom: 2em;
+			}
+			.post-tags a {
+				display: inline-block;
+				padding: 0.15em 0.8em;
+				border-radius: 999px;
+				background: var(--code-bg);
+				color: rgb(var(--gray));
+				font-size: 0.8em;
+				text-decoration: none;
+			}
+			hr.end {
+				margin: 3em 0 1em;
+			}
+			.back {
+				font-size: 0.9em;
+			}
+			.post-tags a:hover {
+				color: var(--accent);
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<div class="hero-image">
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+				</div>
+				<div class="prose">
+					<div class="title">
+						<div class="date">
+							<time datetime={pubDate.toISOString()}>
+								<FormattedDate date={pubDate} />
+							</time>
+							<span>·</span>
+							<span>约 {minutes} 分钟</span>
+							{
+								updatedDate && (
+									<span class="last-updated-on">
+										· 更新于 <FormattedDate date={updatedDate} />
+									</span>
+								)
+							}
+						</div>
+						<h1>{title}</h1>
+						<hr />
+					</div>
+					{
+						tags && tags.length > 0 && (
+							<nav class="post-tags">
+								{tags.map((tag) => (
+									<a href={`/tags/${tag}`}>{tag}</a>
+								))}
+							</nav>
+						)
+					}
+					<slot />
+					<hr class="end" />
+					<p class="back">
+						<a href="/blog">&larr; 返回文章列表</a>
+					</p>
+				</div>
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>
