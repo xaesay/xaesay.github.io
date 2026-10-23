@@ -23,7 +23,7 @@ export const SITE_INTRO =
 export const GITHUB_URL = 'https://github.com/yourname';
 
 /** 邮箱地址，留空则不显示图标 */
-export const EMAIL = 'hi@hyde.live';
+export const EMAIL = 'hi@cha0.wang';
 
 /** X / Twitter 地址，留空则不显示图标 */
 export const X_URL = '';

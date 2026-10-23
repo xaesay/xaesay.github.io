@@ -1,6 +1,6 @@
 # 下午俩点半的海德公园（Hyde' Park）
 
-- **域名**：<https://hyde.live>
+- **域名**：<https://cha0.wang>
 - **框架**：[Astro 5](https://astro.build/) —— 构建纯静态 HTML，速度极快
 - **托管**：[Cloudflare Pages](https://pages.cloudflare.com/) —— 免费、全球 CDN、自动 HTTPS
 - **费用**：¥0（Cloudflare Pages 免费额度：每月 500 次构建、静态流量不限量）
@@ -150,54 +150,59 @@ git push -u origin main
 > 只要你**没有**在仓库 Settings → Pages 里启用 GitHub Pages，它就只是个普通仓库，
 > 与 Cloudflare Pages 托管互不干扰。
 
-### 第 3 步：绑定你的域名
+### 第 3 步：绑定自定义域名
 
-1. Cloudflare Pages 项目 → **自定义域** → **设置自定义域**，输入你的域名（如 `blog.yourdomain.com` 或裸域 `yourdomain.com`）
-2. **如果域名的 DNS 就在 Cloudflare**：它会在你的账号下自动添加 CNAME 记录，无需任何操作
-3. **如果域名 DNS 在别处**（阿里云、腾讯云等）：去 DNS 管理处添加一条 CNAME 记录：
-   - 主机记录：`blog`（或 `@` 表示裸域，裸域需先删除可能冲突的 A 记录）
-   - 记录类型：`CNAME`
-   - 记录值：`<项目名>.pages.dev`
-4. 等 DNS 生效（几分钟到几小时），Cloudflare 自动签发 HTTPS 证书
+本项目当前绑定的正式域名是 **cha0.wang**。
 
-### 第 4 步：DNS 解析设置
+1. Cloudflare → **Workers 和 Pages** → 你的项目 → **设置 → 域和路由**
+2. 点「添加」→「自定义域」，输入 `cha0.wang`
+3. 按 Cloudflare 的提示，到你的 DNS 服务商添加它给出的记录
 
-域名 `hyde.live` 想要指向博客，在域名 DNS 管理处添加记录。两种方式二选一：
+### 第 4 步：DNS 与 HTTPS 证书（重要）
 
-**方式 A：只用子域名（推荐，最简单）**
+⚠️ **国内访问提示**：默认的 `*.workers.dev` 域名在国内被屏蔽，必须绑定自定义域名才能正常访问。
 
-| 主机记录 | 类型 | 记录值 |
-| -------- | ---- | ------ |
-| `blog` | CNAME | `<项目名>.pages.dev` |
+**HTTPS 证书签发不了怎么办？**
 
-之后访问 `https://blog.hyde.live`。
+本项目的域名 DNS 托管在**腾讯云 DNSPod**，不在 Cloudflare。这种情况下 Cloudflare 无法
+走自动签发，只靠 HTTP 验证排队，经常卡住（表现为：HTTP 能打开，HTTPS 报「无法建立
+安全连接」）。
 
-**方式 B：用裸域 hyde.live**
+**根本解法（推荐）：把域名的 NS 转到 Cloudflare**
 
-Cloudflare Pages 支持裸域绑定：先确认 DNS 里没有指向别处的 `@` 记录（A / AAAA / CNAME，
-有就删掉），然后添加：
+1. 先到 DNSPod **截图保存所有现有解析记录**（转移后 Cloudflare 里是空的，需要重建）
+2. Cloudflare 首页 → **添加站点** → 输入 `cha0.wang` → 选 Free 计划
+3. 记下 Cloudflare 给的两个 NS 地址（形如 `xxx.ns.cloudflare.com`）
+4. 到腾讯云域名控制台 → 域名管理 → **修改 DNS 服务器**，填入那两个 NS
+5. 等 NS 生效（通常几分钟，最长 48 小时）
+6. 生效后在 Cloudflare 的 DNS 页面补回原有记录，证书会自动签发并**自动续期**
 
-| 主机记录 | 类型 | 记录值 |
-| -------- | ---- | ------ |
-| `@` | CNAME | `<项目名>.pages.dev` |
+**替代方案：保持 DNSPod，改用 CNAME**
 
-> 补充说明：如果以后想让 `hyde.live` 和 `www.hyde.live` 都能访问，再加一条
-> `www` 的 CNAME 即可。若你的 DNS 服务商不支持裸域 CNAME（如部分国内服务商），
-> 可以把域名 DNS 托管到 Cloudflare，或在 Cloudflare Pages 绑定后使用其提供的解析方案。
+把 DNSPod 上指向 Cloudflare 共享 IP（`104.21.x` / `172.67.x`）的 A 记录删掉，
+改成 CNAME 指向 Cloudflare 自定义域页面给出的目标地址。改动小，但后续证书续期和
+功能扩展都不如托管在 Cloudflare 省心。
 
-DNS 生效需要几分钟到几小时，生效后 Cloudflare 会自动签发 HTTPS 证书。
+> 注意：不要用 A 记录手工指向 `104.21.x` / `172.67.x` —— 这些是 Cloudflare 分配给
+> 已托管域名的共享代理 IP，NS 不在 Cloudflare 时用它们会导致证书验证失败。
+
+**建议顺手加上 www**：目前 `www.cha0.wang` 没有解析，可再加一条 CNAME 并用
+Cloudflare 的「批量重定向」把 www 跳转到裸域。
 
 ### 已完成的配置
 
 站点信息与域名已经写入项目，无需再改：
 
-- `astro.config.mjs` → `site: 'https://hyde.live'`（影响 sitemap / RSS 的绝对链接）
-- `public/robots.txt` → `Sitemap: https://hyde.live/sitemap-index.xml`
+- `astro.config.mjs` → `site: 'https://cha0.wang'`（影响 sitemap / RSS 的绝对链接）
+- `public/robots.txt` → `Sitemap: https://cha0.wang/sitemap-index.xml`
 - `src/consts.ts` → 站名、简介、邮箱
 
 **还需要你补充**：`src/consts.ts` 里的 `SITE_AUTHOR`（你的署名）和 `GITHUB_URL`。
 
 ## 想要更快的国内访问？
 
-Cloudflare Pages 对国内直连可用但速度一般。如果以后域名完成 ICP 备案，可以零成本迁移到
-腾讯云 EdgeOne Pages（国内节点）：因为本站是纯静态 HTML，把 `dist/` 内容原样上传即可。
+Cloudflare 免费版在国内访问不稳定：默认的 `*.workers.dev` 后缀被屏蔽，绑定自定义域名后
+部分地区/运营商仍可能打不开。如果希望国内访客稳定打开，需要给域名做 ICP 备案，
+再迁到国内节点（如腾讯云 EdgeOne Pages）。
+
+本站是纯静态 HTML，迁移零成本 —— 把 `dist/` 内容原样上传即可，不需要改动任何代码。

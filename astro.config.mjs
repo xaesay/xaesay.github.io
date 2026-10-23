@@ -5,6 +5,6 @@ import sitemap from '@astrojs/sitemap';
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-	site: 'https://hyde.live',
+	site: 'https://cha0.wang',
 	integrations: [mdx(), sitemap()],
 });
