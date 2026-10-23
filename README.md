@@ -5,10 +5,6 @@
 - **托管**：[Cloudflare Pages](https://pages.cloudflare.com/) —— 免费、全球 CDN、自动 HTTPS
 - **费用**：¥0（Cloudflare Pages 免费额度：每月 500 次构建、静态流量不限量）
 
-- **框架**：[Astro 5](https://astro.build/) —— 构建纯静态 HTML，速度极快
-- **托管**：[Cloudflare Pages](https://pages.cloudflare.com/) —— 免费、全球 CDN、自动 HTTPS
-- **费用**：¥0（Cloudflare Pages 免费额度：每月 500 次构建、静态流量不限量）
-
 ## 目录结构
 
 ```
@@ -108,21 +104,21 @@ git push -u origin main
 万一没弹窗、命令行提示输入用户名密码，注意：
 
 - **用户名**：填 GitHub 用户名
-- **密码**：**不能填登录密码**。需要去 GitHub → Settings → Developer settings →
-  Personal access tokens → Tokens (classic) → Generate new token，勾选 `repo` 权限，
+- **密码**：**不能填登录密码**。需要去 GitHub → Settings → Developer settings →  
+  Personal access tokens → Tokens (classic) → Generate new token，勾选 `repo` 权限，  
   生成后把那串 token 当密码粘贴进去。
 
 > 提示：粘贴密码时终端不会显示任何字符（连 `***` 都没有），这是正常的，直接回车即可。
 
 #### 1-D. 常见报错速查
 
-| 报错 | 原因 | 解决 |
-| ---- | ---- | ---- |
-| `Please tell me who you are` | 没配身份 | 执行上面的 ① |
-| `src refspec main does not match` | 分支名不对 | 执行 `git branch -M main` 后再 push |
-| `remote origin already exists` | 已关联过 | 改用 `git remote set-url origin <地址>` |
-| `Updates were rejected` | 远端有 README 等文件 | 先执行 `git pull origin main --allow-unrelated-histories` 再 push |
-| `Authentication failed` | 用了登录密码当密码 | 改用 Personal Access Token（见 1-C） |
+| 报错                                | 原因             | 解决                                                            |
+| --------------------------------- | -------------- | ------------------------------------------------------------- |
+| `Please tell me who you are`      | 没配身份           | 执行上面的 ①                                                       |
+| `src refspec main does not match` | 分支名不对          | 执行 `git branch -M main` 后再 push                               |
+| `remote origin already exists`    | 已关联过           | 改用 `git remote set-url origin <地址>`                           |
+| `Updates were rejected`           | 远端有 README 等文件 | 先执行 `git pull origin main --allow-unrelated-histories` 再 push |
+| `Authentication failed`           | 用了登录密码当密码      | 改用 Personal Access Token（见 1-C）                               |
 
 推送成功后刷新 GitHub 页面，能看到文件就说明成功了，接着去 Cloudflare Pages 连接这个仓库。
 
@@ -133,21 +129,22 @@ git push -u origin main
    - 构建命令：`npm run build`
    - 构建输出目录：`dist`
 
-> **关于新版界面**：Cloudflare 已把 Pages 并入 Workers 平台，现在创建项目时标题会显示
-> 「配置您的 Worker 项目」，部署命令是 `npx wrangler deploy`，这是**正常的**，一样能免费托管静态站。
-> 项目里已经准备好了 `wrangler.json`（里面指定了 `assets.directory = ./dist`），
+> **关于新版界面**：Cloudflare 已把 Pages 并入 Workers 平台，现在创建项目时标题会显示  
+> 「配置您的 Worker 项目」，部署命令是 `npx wrangler deploy`，这是**正常的**，一样能免费托管静态站。  
+> 项目里已经准备好了 `wrangler.json`（里面指定了 `assets.directory = ./dist`），  
 > 所以直接点部署即可，不需要改动任何默认命令。
-3. 展开「环境变量(高级)」，添加一条：
+
+1. 展开「环境变量(高级)」，添加一条：
    - 变量名：`NODE_VERSION`，值：`22`
-   - ⚠️ 建议加上。Cloudflare Pages 默认 Node 版本可能偏旧，而 Astro 5 要求 Node
-     `18.20.8+ / 20.3.0+ / 22+`，不指定容易出现构建报 `Unsupported engine`
+   - ⚠️ 建议加上。Cloudflare Pages 默认 Node 版本可能偏旧，而 Astro 5 要求 Node  
+     `18.20.8+ / 20.3.0+ / 22+`，不指定容易出现构建报 `Unsupported engine`  
      或 `Not supported` 而失败。
-4. 点击「保存并部署」，等待 1–2 分钟，会得到一个 `xxx.pages.dev` 的临时域名
+2. 点击「保存并部署」，等待 1–2 分钟，会得到一个 `xxx.pages.dev` 的临时域名
 
 之后每次 `git push`，Cloudflare 会自动重新构建发布，无需任何手动操作。
 
-> 当前仓库名是 `xaesay.github.io`，这是 GitHub Pages 的用户站专用名。
-> 只要你**没有**在仓库 Settings → Pages 里启用 GitHub Pages，它就只是个普通仓库，
+> 当前仓库名是 `xaesay.github.io`，这是 GitHub Pages 的用户站专用名。  
+> 只要你**没有**在仓库 Settings → Pages 里启用 GitHub Pages，它就只是个普通仓库，  
 > 与 Cloudflare Pages 托管互不干扰。
 
 ### 第 3 步：绑定自定义域名
@@ -164,8 +161,8 @@ git push -u origin main
 
 **HTTPS 证书签发不了怎么办？**
 
-本项目的域名 DNS 托管在**腾讯云 DNSPod**，不在 Cloudflare。这种情况下 Cloudflare 无法
-走自动签发，只靠 HTTP 验证排队，经常卡住（表现为：HTTP 能打开，HTTPS 报「无法建立
+本项目的域名 DNS 托管在**腾讯云 DNSPod**，不在 Cloudflare。这种情况下 Cloudflare 无法  
+走自动签发，只靠 HTTP 验证排队，经常卡住（表现为：HTTP 能打开，HTTPS 报「无法建立  
 安全连接」）。
 
 **根本解法（推荐）：把域名的 NS 转到 Cloudflare**
@@ -179,14 +176,14 @@ git push -u origin main
 
 **替代方案：保持 DNSPod，改用 CNAME**
 
-把 DNSPod 上指向 Cloudflare 共享 IP（`104.21.x` / `172.67.x`）的 A 记录删掉，
-改成 CNAME 指向 Cloudflare 自定义域页面给出的目标地址。改动小，但后续证书续期和
+把 DNSPod 上指向 Cloudflare 共享 IP（`104.21.x` / `172.67.x`）的 A 记录删掉，  
+改成 CNAME 指向 Cloudflare 自定义域页面给出的目标地址。改动小，但后续证书续期和  
 功能扩展都不如托管在 Cloudflare 省心。
 
-> 注意：不要用 A 记录手工指向 `104.21.x` / `172.67.x` —— 这些是 Cloudflare 分配给
+> 注意：不要用 A 记录手工指向 `104.21.x` / `172.67.x` —— 这些是 Cloudflare 分配给  
 > 已托管域名的共享代理 IP，NS 不在 Cloudflare 时用它们会导致证书验证失败。
 
-**建议顺手加上 www**：目前 `www.cha0.wang` 没有解析，可再加一条 CNAME 并用
+**建议顺手加上 www**：目前 `www.cha0.wang` 没有解析，可再加一条 CNAME 并用  
 Cloudflare 的「批量重定向」把 www 跳转到裸域。
 
 ### 已完成的配置
@@ -201,8 +198,8 @@ Cloudflare 的「批量重定向」把 www 跳转到裸域。
 
 ## 想要更快的国内访问？
 
-Cloudflare 免费版在国内访问不稳定：默认的 `*.workers.dev` 后缀被屏蔽，绑定自定义域名后
-部分地区/运营商仍可能打不开。如果希望国内访客稳定打开，需要给域名做 ICP 备案，
+Cloudflare 免费版在国内访问不稳定：默认的 `*.workers.dev` 后缀被屏蔽，绑定自定义域名后  
+部分地区/运营商仍可能打不开。如果希望国内访客稳定打开，需要给域名做 ICP 备案，  
 再迁到国内节点（如腾讯云 EdgeOne Pages）。
 
 本站是纯静态 HTML，迁移零成本 —— 把 `dist/` 内容原样上传即可，不需要改动任何代码。

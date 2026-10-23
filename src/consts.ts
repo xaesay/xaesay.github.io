@@ -13,17 +13,17 @@ export const SITE_DESCRIPTION =
 	"下午俩点半的海德公园（Hyde' Park）—— 一个记录技术、阅读与生活的个人博客。";
 
 /** 作者名（显示在页脚与关于页） */
-export const SITE_AUTHOR = '你的名字';
+export const SITE_AUTHOR = 'Hyde';
 
 /** 一句话自我介绍（首页与 About 页展示） */
 export const SITE_INTRO =
 	"下午两点半，光斜着穿过树影落进公园。这里是 Hyde' Park —— 我把读过的书、踩过的坑和一些零碎念头，都记在这里。";
 
 /** GitHub 主页地址，留空则不显示图标 */
-export const GITHUB_URL = 'https://github.com/yourname';
+export const GITHUB_URL = 'https://github.com/xaesay';
 
 /** 邮箱地址，留空则不显示图标 */
-export const EMAIL = 'hi@cha0.wang';
+export const EMAIL = 'me@hyde.live';
 
 /** X / Twitter 地址，留空则不显示图标 */
 export const X_URL = '';
