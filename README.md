@@ -1,205 +1,99 @@
-# 下午俩点半的海德公园（Hyde' Park）
+# 🍥Fuwari  
+![Node.js >= 20](https://img.shields.io/badge/node.js-%3E%3D20-brightgreen) 
+![pnpm >= 9](https://img.shields.io/badge/pnpm-%3E%3D9-blue) 
+[![DeepWiki](https://img.shields.io/badge/DeepWiki-saicaca%2Ffuwari-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/saicaca/fuwari)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=shield&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_shield&issueType=license)
 
-- **域名**：<https://cha0.wang>
-- **框架**：[Astro 5](https://astro.build/) —— 构建纯静态 HTML，速度极快
-- **托管**：[Cloudflare Pages](https://pages.cloudflare.com/) —— 免费、全球 CDN、自动 HTTPS
-- **费用**：¥0（Cloudflare Pages 免费额度：每月 500 次构建、静态流量不限量）
+A static blog template built with [Astro](https://astro.build).
 
-## 目录结构
+[**🖥️ Live Demo (Vercel)**](https://fuwari.vercel.app)
 
-```
-src/
-├── consts.ts            # ★ 站点配置（标题、简介、社交链接），先改这里
-│                        #   SITE_TITLE = 下午俩点半的海德公园 / SITE_SHORT = Hyde' Park
-├── content.config.ts    # 文章 frontmatter 字段定义
-├── content/blog/        # ★ 文章目录，一个 .md 文件就是一篇文章
-├── pages/               # 页面路由（首页 / 文章 / 标签 / 关于 / 404 / RSS）
-├── components/          # 页头、页脚、文章卡片等组件
-├── layouts/             # 文章详情页布局
-├── styles/global.css    # 全局样式（含深色模式）
-└── assets/              # 图片素材
-public/                  # 原样复制的文件（robots.txt、_headers 等）
-astro.config.mjs         # Astro 配置（★ site 字段改成你的域名）
-```
+![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
 
-## 本地开发
+🌏 README in
+[**中文**](https://github.com/saicaca/fuwari/blob/main/docs/README.zh-CN.md) /
+[**日本語**](https://github.com/saicaca/fuwari/blob/main/docs/README.ja.md) /
+[**한국어**](https://github.com/saicaca/fuwari/blob/main/docs/README.ko.md) /
+[**Español**](https://github.com/saicaca/fuwari/blob/main/docs/README.es.md) /
+[**ไทย**](https://github.com/saicaca/fuwari/blob/main/docs/README.th.md) /
+[**Tiếng Việt**](https://github.com/saicaca/fuwari/blob/main/docs/README.vi.md) /
+[**Bahasa Indonesia**](https://github.com/saicaca/fuwari/blob/main/docs/README.id.md) (Provided by the community and may not always be up-to-date)
 
-```bash
-npm install       # 首次
-npm run dev       # 本地预览 http://localhost:4321
-npm run build     # 构建到 dist/ 目录
-```
+## ✨ Features
 
-## 怎么写文章
+- [x] Built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com)
+- [x] Smooth animations and page transitions
+- [x] Light / dark mode
+- [x] Customizable theme colors & banner
+- [x] Responsive design
+- [x] Search functionality with [Pagefind](https://pagefind.app/)
+- [x] [Markdown extended features](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
+- [x] Table of contents
+- [x] RSS feed
 
-在 `src/content/blog/` 新建一个 Markdown 文件（文件名即文章 URL，建议英文）：
+## 🚀 Getting Started
 
-```markdown
+1. Create your blog repository:
+    - [Generate a new repository](https://github.com/saicaca/fuwari/generate) from this template or fork this repository.
+    - Or run one of the following commands:
+       ```sh
+       npm create fuwari@latest
+       yarn create fuwari
+       pnpm create fuwari@latest
+       bun create fuwari@latest
+       deno run -A npm:create-fuwari@latest
+       ```
+2. To edit your blog locally, clone your repository, run `pnpm install` to install dependencies.
+    - Install [pnpm](https://pnpm.io) `npm install -g pnpm` if you haven't.
+3. Edit the config file `src/config.ts` to customize your blog.
+4. Run `pnpm new-post <filename>` to create a new post and edit it in `src/content/posts/`.
+5. Deploy your blog to Vercel, Netlify, GitHub Pages, etc. following [the guides](https://docs.astro.build/en/guides/deploy/). You need to edit the site configuration in `astro.config.mjs` before deployment.
+
+## 📝 Frontmatter of Posts
+
+```yaml
 ---
-title: '文章标题'
-description: '一句话摘要'
-pubDate: '2026-10-22'
-tags: ['随笔']
-heroImage: '../../assets/blog-placeholder-1.jpg'  # 可选
-draft: true   # 草稿模式：本地可见，发布时自动排除（正式发布删掉这行）
+title: My First Blog Post
+published: 2023-09-09
+description: This is the first post of my new Astro blog.
+image: ./cover.jpg
+tags: [Foo, Bar]
+category: Front-end
+draft: false
+lang: jp      # Set only if the post's language differs from the site's language in `config.ts`
 ---
-
-正文支持标题、列表、表格、代码块、引用、图片等一切 Markdown 语法。
 ```
 
-## 部署到 Cloudflare Pages（约 10 分钟）
+## 🧩 Markdown Extended Syntax
 
-### 第 1 步：推送到 GitHub
+In addition to Astro's default support for [GitHub Flavored Markdown](https://github.github.com/gfm/), several extra Markdown features are included:
 
-#### 1-A. 先在 GitHub 网页上创建仓库
+- Admonitions ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#admonitions))
+- GitHub repository cards ([Preview and Usage](https://fuwari.vercel.app/posts/markdown-extended/#github-repository-cards))
+- Enhanced code blocks with Expressive Code ([Preview](https://fuwari.vercel.app/posts/expressive-code/) / [Docs](https://expressive-code.com/))
 
-1. 登录 <https://github.com/new>
-2. 仓库名随便起，例如 `hyde-park-blog`
-3. 公开（Public）或私有（Private）都可以
-4. ⚠️ **不要勾选**任何初始化选项（README / .gitignore / License 全都别勾）—— 因为本地已经有内容了，勾了会导致两边历史不一致，推送会失败
-5. 点「Create repository」
+## ⚡ Commands
 
-创建完成后，页面上会显示一个 `https://github.com/xxx/yyy.git` 的地址，**复制它**，下一步要用。
+All commands are run from the root of the project, from a terminal:
 
-#### 1-B. 在本地终端执行命令
+| Command                    | Action                                              |
+|:---------------------------|:----------------------------------------------------|
+| `pnpm install`             | Installs dependencies                               |
+| `pnpm dev`                 | Starts local dev server at `localhost:4321`         |
+| `pnpm build`               | Build your production site to `./dist/`             |
+| `pnpm preview`             | Preview your build locally, before deploying        |
+| `pnpm check`               | Run checks for errors in your code                  |
+| `pnpm format`              | Format your code using Biome                        |
+| `pnpm new-post <filename>` | Create a new post                                   |
+| `pnpm astro ...`           | Run CLI commands like `astro add`, `astro check`    |
+| `pnpm astro --help`        | Get help using the Astro CLI                        |
 
-在 `my-blog` 文件夹里打开终端（文件夹空白处右键 →「在终端中打开」或「Git Bash Here」），然后逐行执行：
+## ✏️ Contributing
 
-**① 配置你的身份**（只需做一次，之后所有 Git 项目通用）
+Check out the [Contributing Guide](https://github.com/saicaca/fuwari/blob/main/CONTRIBUTING.md) for details on how to contribute to this project.
 
-```bash
-git config --global user.name "你的名字"
-git config --global user.email "你的GitHub邮箱"
-```
+## 📄 License
 
-> 邮箱要和 GitHub 账号一致，否则贡献记录无法关联。
+This project is licensed under the MIT License.
 
-**② 提交**
-
-```bash
-git commit -m "init: my blog"
-```
-
-**③ 把分支名改成 main**
-
-```bash
-git branch -M main
-```
-
-> Git 默认可能创建 `master` 分支，这条命令统一改成 `main`，和 GitHub 默认保持一致。
-
-**④ 关联远端仓库并推送**
-
-把下面命令里的地址换成 1-A 复制的那个（注意保留结尾的 `.git`）：
-
-```bash
-git remote add origin https://github.com/<你的用户名>/<仓库名>.git
-git push -u origin main
-```
-
-#### 1-C. 如果 push 时要求登录
-
-你电脑上已安装 **Git Credential Manager（2.9.0）**，执行 `git push` 时会自动弹出浏览器窗口让你登录 GitHub 授权，正常点确认即可。
-
-万一没弹窗、命令行提示输入用户名密码，注意：
-
-- **用户名**：填 GitHub 用户名
-- **密码**：**不能填登录密码**。需要去 GitHub → Settings → Developer settings →  
-  Personal access tokens → Tokens (classic) → Generate new token，勾选 `repo` 权限，  
-  生成后把那串 token 当密码粘贴进去。
-
-> 提示：粘贴密码时终端不会显示任何字符（连 `***` 都没有），这是正常的，直接回车即可。
-
-#### 1-D. 常见报错速查
-
-| 报错                                | 原因             | 解决                                                            |
-| --------------------------------- | -------------- | ------------------------------------------------------------- |
-| `Please tell me who you are`      | 没配身份           | 执行上面的 ①                                                       |
-| `src refspec main does not match` | 分支名不对          | 执行 `git branch -M main` 后再 push                               |
-| `remote origin already exists`    | 已关联过           | 改用 `git remote set-url origin <地址>`                           |
-| `Updates were rejected`           | 远端有 README 等文件 | 先执行 `git pull origin main --allow-unrelated-histories` 再 push |
-| `Authentication failed`           | 用了登录密码当密码      | 改用 Personal Access Token（见 1-C）                               |
-
-推送成功后刷新 GitHub 页面，能看到文件就说明成功了，接着去 Cloudflare Pages 连接这个仓库。
-
-### 第 2 步：连接 Cloudflare Pages
-
-1. 打开 <https://dash.cloudflare.com/> → **Workers 和 Pages** → **创建** → **连接到 Git**
-2. 授权并选中刚才的仓库，配置：
-   - 构建命令：`npm run build`
-   - 构建输出目录：`dist`
-
-> **关于新版界面**：Cloudflare 已把 Pages 并入 Workers 平台，现在创建项目时标题会显示  
-> 「配置您的 Worker 项目」，部署命令是 `npx wrangler deploy`，这是**正常的**，一样能免费托管静态站。  
-> 项目里已经准备好了 `wrangler.json`（里面指定了 `assets.directory = ./dist`），  
-> 所以直接点部署即可，不需要改动任何默认命令。
-
-1. 展开「环境变量(高级)」，添加一条：
-   - 变量名：`NODE_VERSION`，值：`22`
-   - ⚠️ 建议加上。Cloudflare Pages 默认 Node 版本可能偏旧，而 Astro 5 要求 Node  
-     `18.20.8+ / 20.3.0+ / 22+`，不指定容易出现构建报 `Unsupported engine`  
-     或 `Not supported` 而失败。
-2. 点击「保存并部署」，等待 1–2 分钟，会得到一个 `xxx.pages.dev` 的临时域名
-
-之后每次 `git push`，Cloudflare 会自动重新构建发布，无需任何手动操作。
-
-> 当前仓库名是 `xaesay.github.io`，这是 GitHub Pages 的用户站专用名。  
-> 只要你**没有**在仓库 Settings → Pages 里启用 GitHub Pages，它就只是个普通仓库，  
-> 与 Cloudflare Pages 托管互不干扰。
-
-### 第 3 步：绑定自定义域名
-
-本项目当前绑定的正式域名是 **cha0.wang**。
-
-1. Cloudflare → **Workers 和 Pages** → 你的项目 → **设置 → 域和路由**
-2. 点「添加」→「自定义域」，输入 `cha0.wang`
-3. 按 Cloudflare 的提示，到你的 DNS 服务商添加它给出的记录
-
-### 第 4 步：DNS 与 HTTPS 证书（重要）
-
-⚠️ **国内访问提示**：默认的 `*.workers.dev` 域名在国内被屏蔽，必须绑定自定义域名才能正常访问。
-
-**HTTPS 证书签发不了怎么办？**
-
-本项目的域名 DNS 托管在**腾讯云 DNSPod**，不在 Cloudflare。这种情况下 Cloudflare 无法  
-走自动签发，只靠 HTTP 验证排队，经常卡住（表现为：HTTP 能打开，HTTPS 报「无法建立  
-安全连接」）。
-
-**根本解法（推荐）：把域名的 NS 转到 Cloudflare**
-
-1. 先到 DNSPod **截图保存所有现有解析记录**（转移后 Cloudflare 里是空的，需要重建）
-2. Cloudflare 首页 → **添加站点** → 输入 `cha0.wang` → 选 Free 计划
-3. 记下 Cloudflare 给的两个 NS 地址（形如 `xxx.ns.cloudflare.com`）
-4. 到腾讯云域名控制台 → 域名管理 → **修改 DNS 服务器**，填入那两个 NS
-5. 等 NS 生效（通常几分钟，最长 48 小时）
-6. 生效后在 Cloudflare 的 DNS 页面补回原有记录，证书会自动签发并**自动续期**
-
-**替代方案：保持 DNSPod，改用 CNAME**
-
-把 DNSPod 上指向 Cloudflare 共享 IP（`104.21.x` / `172.67.x`）的 A 记录删掉，  
-改成 CNAME 指向 Cloudflare 自定义域页面给出的目标地址。改动小，但后续证书续期和  
-功能扩展都不如托管在 Cloudflare 省心。
-
-> 注意：不要用 A 记录手工指向 `104.21.x` / `172.67.x` —— 这些是 Cloudflare 分配给  
-> 已托管域名的共享代理 IP，NS 不在 Cloudflare 时用它们会导致证书验证失败。
-
-**建议顺手加上 www**：目前 `www.cha0.wang` 没有解析，可再加一条 CNAME 并用  
-Cloudflare 的「批量重定向」把 www 跳转到裸域。
-
-### 已完成的配置
-
-站点信息与域名已经写入项目，无需再改：
-
-- `astro.config.mjs` → `site: 'https://cha0.wang'`（影响 sitemap / RSS 的绝对链接）
-- `public/robots.txt` → `Sitemap: https://cha0.wang/sitemap-index.xml`
-- `src/consts.ts` → 站名、简介、邮箱
-
-**还需要你补充**：`src/consts.ts` 里的 `SITE_AUTHOR`（你的署名）和 `GITHUB_URL`。
-
-## 想要更快的国内访问？
-
-Cloudflare 免费版在国内访问不稳定：默认的 `*.workers.dev` 后缀被屏蔽，绑定自定义域名后  
-部分地区/运营商仍可能打不开。如果希望国内访客稳定打开，需要给域名做 ICP 备案，  
-再迁到国内节点（如腾讯云 EdgeOne Pages）。
-
-本站是纯静态 HTML，迁移零成本 —— 把 `dist/` 内容原样上传即可，不需要改动任何代码。
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsaicaca%2Ffuwari?ref=badge_large&issueType=license)

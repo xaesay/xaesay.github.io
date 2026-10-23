@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://cha0.wang/sitemap-index.xml

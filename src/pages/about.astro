@@ -1,43 +1,25 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
-import { EMAIL, GITHUB_URL, SITE_AUTHOR, SITE_INTRO, SITE_SHORT, SITE_TITLE } from '../consts';
+
+import { getEntry, render } from "astro:content";
+import Markdown from "@components/misc/Markdown.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const aboutPost = await getEntry("spec", "about");
+
+if (!aboutPost) {
+	throw new Error("About page content not found");
+}
+
+const { Content } = await render(aboutPost);
 ---
-
-<Layout
-	title="关于我"
-	description="关于本站与作者"
-	pubDate={new Date('2026-01-01')}
-	heroImage={AboutHeroImage}
-	tags={[]}
-	id="about"
->
-	<p>{SITE_INTRO}</p>
-
-	<h2>关于站名</h2>
-	<p>
-		{SITE_TITLE}，简称 {SITE_SHORT}。下午两点半是一天里最松弛的时刻，
-		而公园是个可以把脚步放慢、让念头随意生长的地方 —— 这个博客想成为这样一个所在。
-	</p>
-
-	<p>
-		这里是「关于」页面。你可以在这里补充介绍自己：在做什么、关心什么，
-		编辑 <code>src/pages/about.astro</code> 即可修改本页内容。
-	</p>
-
-	<h2>联系我</h2>
-	<ul>
-		{GITHUB_URL && <li>GitHub：<a href={GITHUB_URL}>{GITHUB_URL}</a></li>}
-		{EMAIL && <li>邮箱：<a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>}
-		<li>RSS 订阅：<a href="/rss.xml">/rss.xml</a></li>
-	</ul>
-
-	<p class="sign">—— {SITE_AUTHOR}</p>
-</Layout>
-
-<style>
-	.sign {
-		text-align: right;
-		color: rgb(var(--gray));
-	}
-</style>
+<MainGridLayout title={i18n(I18nKey.about)} description={i18n(I18nKey.about)}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <Markdown class="mt-2">
+                <Content />
+            </Markdown>
+        </div>
+    </div>
+</MainGridLayout>
